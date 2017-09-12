@@ -19,9 +19,11 @@ To create the specification file for Kubernetes, we use `ksonnet`. This library 
 
 To manage the kubernetes objects we use [kubecfg](https://github.com/ksonnet/kubecfg/), a tool for managing complex enterprise Kubernetes environments as code.
 
+And last but not least, you need to have a working Kuberntes environment.
+
 At the beginning, you may think that it's complicated, but the more complex your infrastructure is, the more you will gain from using kubecfg.
 
-# Installation
+## Installation
 
 
 To get the ```jsonnet``` CLI tool in MAC with Homebrew do:
@@ -46,8 +48,6 @@ Now, you're ready to compile the current deployment in order to test your setup:
 ```
 kubecfg show -f nginx.jsonnet
 ```
-
-# Kubernetes
 
 ## Deployment
 
@@ -96,34 +96,8 @@ $ kubecfg apply -f nginx.jsonnet
 
 ## Delete all created resources 
 
-Use this command that deletes the deployment:
+Use this command to delete the deployment:
 
 ```
 $ kubecfg delete -f nginx.jsonnet
-```
-
-
-# Configuration
-
-Edit the following variables in the `nginx.jsonnet` file to adjust it to your environment:
-
-```
-# ========================
-#  Configuration params
-# ========================
-local name = "nonroot-nginx";
-local namespace = "default";
-local image = "bitnami/nginx:1.12.1-r2";
-local ports = [
-  {
-    name: "http",
-    port: 8080,
-  },
-];
-local svcports = [
-  {
-    name: "http",
-    port: 80,
-  },
-];
 ```
