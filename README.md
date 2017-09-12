@@ -1,9 +1,9 @@
-# Bitnami non-root Nginx 
+# Bitnami non-root Nginx using Kubecfg and Ksonnet
 
 This project includes a template to deploy Bitnami Nginx for Kubernetes or Openshift. 
 This is a non-root container, which means that `nginx` process is started as a normal user, and therefore on a port above `1024`. Port `8080` is used by default.
 
-The deployment is composed by 3 resources:
+The deployment is composed of  3 resources:
 
 * Container: Defines the Pod, including ports, envs, readinessProbe and livenessProbe 
 * Deployment: Defines the Pod deployment, setting number of replicas and metadata 
@@ -13,8 +13,10 @@ All the resources are defined in the `resources` folder. The `nginx.jsonnet` fil
 
 ## Components of the project
 
-To use this project, you need to install [jsonnet](https://github.com/google/jsonnet/). i
-To create the specification file for Kubernetes, we use `ksonnet`. This library provide us some functions to generate the spec for the different resources. 
+To use this project, you need to install [jsonnet](https://github.com/google/jsonnet/).
+
+To create the specification file for Kubernetes, we use `ksonnet`. This library provides us some functions to generate the spec for the different resources.
+
 To manage the kubernetes objects we use [kubecfg](https://github.com/ksonnet/kubecfg/), a tool for managing complex enterprise Kubernetes environments as code.
 
 At the beginning, you may think that it's complicated, but the more complex your infrastructure is, the more you will gain from using kubecfg.
@@ -68,9 +70,9 @@ $ kubecfg apply -f nginx.jsonnet
 
 This will create this Kubernetes resources:
 
-- A deployment called `nonroot-nginx` which listen on port `8080`.
+- A deployment called `nonroot-nginx` which listens on port `8080`.
 - A pod which is controlled by the above deployment.
-- A service that expose the port as a ClusterIP in the typical http port `80`.
+- A service that exposes the port as a ClusterIP in the typical HTTP port `80`.
 
 ## Making changes 
 
@@ -94,7 +96,7 @@ $ kubecfg apply -f nginx.jsonnet
 
 ## Delete all created resources 
 
-Use this command that deletes all but the pvc:
+Use this command that deletes the deployment:
 
 ```
 $ kubecfg delete -f nginx.jsonnet
@@ -110,7 +112,7 @@ Edit the following variables in the `nginx.jsonnet` file to adjust it to your en
 #  Configuration params
 # ========================
 local name = "nonroot-nginx";
-local namespace = "jbianquetti";
+local namespace = "default";
 local image = "bitnami/nginx:1.12.1-r2";
 local ports = [
   {
