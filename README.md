@@ -13,7 +13,6 @@ All the resources are defined in the `resources` folder. The `nginx.jsonnet` fil
 
 ## Components of the project
 
-To use this project, you need to install [jsonnet](https://github.com/google/jsonnet/).
 
 To create the specification file for Kubernetes, we use `ksonnet`. This library provides us some functions to generate the spec for the different resources.
 
@@ -25,16 +24,7 @@ At the beginning, you may think that it's complicated, but the more complex your
 
 ## Installation
 
-
-To get the ```jsonnet``` CLI tool in MAC with Homebrew do:
-
-```
-brew install jsonnet
-```
-Otherwise (Linux, MAC without homebrew) install from the repo directly:
-https://github.com/google/jsonnet
-
-To install ksonnet and run the project, you only need to clone it in this folder:
+To install ksonnet, you only need to clone it into this folder:
 
 ```
 git clone https://github.com/ksonnet/ksonnet-lib.git .ksonnet-lib
@@ -43,11 +33,6 @@ git clone https://github.com/ksonnet/ksonnet-lib.git .ksonnet-lib
 Finally, install latest kubecfg from the repo:
 https://github.com/ksonnet/kubecfg/releases
 
-Now, you're ready to compile the current deployment in order to test your setup:
-
-```
-kubecfg show -f nginx.jsonnet
-```
 
 ## Deployment
 
@@ -68,7 +53,7 @@ or apply it to Kubernetes directly.
 $ kubecfg apply -f nginx.jsonnet 
 ```
 
-This will create this Kubernetes resources:
+This will create this Kubernetes resources in the `default` namespace:
 
 - A deployment called `nonroot-nginx` which listens on port `8080`.
 - A pod which is controlled by the above deployment.
