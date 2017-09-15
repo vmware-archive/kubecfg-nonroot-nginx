@@ -24,7 +24,9 @@ At the beginning, you may think that it's complicated, but the more complex your
 
 ## Installation
 
-To install ksonnet, you only need to clone it into this folder:
+We've provided a minimal `ksonnet` environment in the `.ksonnet-lib` folder.
+
+It's not necessary, but if you want to install ksonnet, you only need to clone it into that folder:
 
 ```
 git clone https://github.com/ksonnet/ksonnet-lib.git .ksonnet-lib
